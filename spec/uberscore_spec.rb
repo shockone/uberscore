@@ -21,4 +21,9 @@ describe Uberscore do
   it "can subscript" do
     expect([{ name: "foo" }, { name: "bar" }].map(&_[:name])).to eq([{ name: "foo" }, { name: "bar" }].map { |hash| hash[:name] })
   end
+
+  it "works with two or more underscores" do
+    expect((_ + _).to_proc.call(3)).to eq 3 + 3
+    expect((_ + _*_).to_proc.call(3)).to eq 3 + 3*3
+  end
 end
